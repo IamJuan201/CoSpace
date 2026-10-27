@@ -1,0 +1,127 @@
+{
+  "Metadata": {
+    "title": "CoSpace",
+    "description": "Reserva escritorios, salas y cabinas de coworking por horas"
+  },
+  "Nav": {
+    "home": "Inicio",
+    "spaces": "Espacios",
+    "dashboard": "Mis reservas",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "admin": "Administración",
+    "logout": "Cerrar sesión",
+    "loggingOut": "Cerrando sesión…",
+    "logoutError": "No se pudo cerrar la sesión. Inténtalo de nuevo."
+  },
+  "Footer": {
+    "rights": "© {year} CoSpace Platform S.L. Todos los derechos reservados.",
+    "description": "Plataforma inteligente de reserva de puestos de coworking, salas de juntas y espacios flexibles bajo demanda.",
+    "platform": "Plataforma",
+    "workspaces": "Espacios de trabajo",
+    "bookings": "Gestión de reservas",
+    "hourlyRates": "Tarifas por hora",
+    "community": "Comunidad",
+    "guidelines": "Normas de convivencia",
+    "events": "Eventos y networking",
+    "locations": "Red de sedes",
+    "support": "Atención",
+    "supportHours": "Servicio al cliente de 07:00 a 21:00 hs en todas las sucursales.",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "security": "Seguridad"
+  },
+  "SpaceTypes": {
+    "DESK": "Escritorio",
+    "MEETING_ROOM": "Sala de reuniones",
+    "CABIN": "Cabina"
+  },
+  "Home": {
+    "title": "Tu espacio de trabajo, por horas",
+    "subtitle": "Reserva escritorios, salas de reuniones y cabinas privadas en minutos.",
+    "cta": "Explorar espacios",
+    "typesTitle": "Elige cómo quieres trabajar",
+    "typeDescriptions": {
+      "DESK": "Un puesto individual para concentrarte y avanzar en tus proyectos.",
+      "MEETING_ROOM": "Salas equipadas para reuniones de equipo y presentaciones.",
+      "CABIN": "Privacidad total para llamadas, entrevistas y trabajo profundo."
+    }
+  },
+  "Spaces": {
+    "title": "Espacios disponibles",
+    "empty": "No hay espacios disponibles por ahora.",
+    "perHour": "/ hora",
+    "bookNow": "Reservar",
+    "available": "Espacio activo",
+    "viewDetail": "Ver detalle",
+    "back": "Volver al catálogo",
+    "noImage": "Sin imagen",
+    "live": "Catálogo de espacios",
+    "heroTitle": "Espacios diseñados para el enfoque profundo y la colaboración.",
+    "heroSubtitle": "Reserva escritorios flexibles, cabinas acústicas y salas de reunión premium con conectividad de grado empresarial.",
+    "desksAvailable": "Escritorios",
+    "roomsReady": "Salas de reunión",
+    "workingHours": "Turno activo",
+    "rulesTitle": "Condiciones de reserva flexible CoSpace",
+    "ruleDuration": "Bloques de 1 a 4 horas completas",
+    "ruleHours": "Franja de 07:00 a 21:00 hs",
+    "ruleCancellation": "Cancelación sin coste hasta 2 horas antes",
+    "checkin": "Check-in QR instantáneo",
+    "listed": "Espacios listados",
+    "availableCount": "{count} opciones disponibles",
+    "timezoneLabel": "Zona horaria de reservas:"
+  },
+  "Auth": {
+    "loginTitle": "Inicia sesión",
+    "loginSubtitle": "Accede a tus reservas y espacios favoritos.",
+    "registerTitle": "Crea tu cuenta",
+    "registerSubtitle": "Regístrate para empezar a reservar espacios.",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "login": "Iniciar sesión",
+    "register": "Crear cuenta",
+    "submitting": "Procesando…",
+    "genericError": "No se pudo completar la solicitud.",
+    "noAccount": "¿Aún no tienes cuenta?",
+    "registerLink": "Regístrate",
+    "haveAccount": "¿Ya tienes cuenta?",
+    "loginLink": "Inicia sesión"
+  },
+  "Booking": {
+    "title": "Reservar este espacio",
+    "start": "Inicio",
+    "end": "Fin",
+    "loginPrompt": "Inicia sesión para confirmar tu reserva.",
+    "submit": "Confirmar reserva",
+    "submitting": "Reservando…",
+    "error": "No se pudo crear la reserva."
+  },
+  "Dashboard": {
+    "title": "Mis reservas",
+    "empty": "Todavía no tienes reservas.",
+    "cancel": "Cancelar reserva",
+    "loadError": "No se pudieron cargar las reservas.",
+    "status": { "CONFIRMED": "Confirmada", "CANCELLED": "Cancelada" }
+  },
+  "Admin": {
+    "title": "Administrar espacios",
+    "name": "Nombre del espacio",
+    "description": "Descripción",
+    "type": "Tipo de espacio",
+    "price": "Precio por hora (USD)",
+    "imageUrl": "URL de imagen (opcional)",
+    "desk": "Escritorio",
+    "meetingRoom": "Sala de reuniones",
+    "cabin": "Cabina",
+    "create": "Crear espacio",
+    "update": "Guardar cambios",
+    "cancelEdit": "Dejar de editar",
+    "edit": "Editar",
+    "deactivate": "Desactivar",
+    "reactivate": "Reactivar",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "error": "No se pudieron gestionar los espacios."
+  }
+}

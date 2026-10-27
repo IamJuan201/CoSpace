@@ -1,0 +1,127 @@
+{
+  "Metadata": {
+    "title": "CoSpace",
+    "description": "Book coworking desks, meeting rooms and cabins by the hour"
+  },
+  "Nav": {
+    "home": "Home",
+    "spaces": "Spaces",
+    "dashboard": "My bookings",
+    "login": "Log in",
+    "register": "Sign up",
+    "admin": "Admin",
+    "logout": "Log out",
+    "loggingOut": "Logging out…",
+    "logoutError": "Could not log out. Please try again."
+  },
+  "Footer": {
+    "rights": "© {year} CoSpace Platform. All rights reserved.",
+    "description": "Smart booking for coworking desks, meeting rooms, and flexible on-demand workspaces.",
+    "platform": "Platform",
+    "workspaces": "Workspaces",
+    "bookings": "Booking management",
+    "hourlyRates": "Hourly rates",
+    "community": "Community",
+    "guidelines": "Community guidelines",
+    "events": "Events and networking",
+    "locations": "Our locations",
+    "support": "Support",
+    "supportHours": "Customer service from 07:00 to 21:00 at all locations.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "security": "Security"
+  },
+  "SpaceTypes": {
+    "DESK": "Desk",
+    "MEETING_ROOM": "Meeting room",
+    "CABIN": "Cabin"
+  },
+  "Home": {
+    "title": "Your workspace, by the hour",
+    "subtitle": "Book desks, meeting rooms and private cabins in minutes.",
+    "cta": "Browse spaces",
+    "typesTitle": "Choose how you want to work",
+    "typeDescriptions": {
+      "DESK": "An individual desk to focus and move your projects forward.",
+      "MEETING_ROOM": "Equipped rooms for team meetings and presentations.",
+      "CABIN": "Full privacy for calls, interviews and deep work."
+    }
+  },
+  "Spaces": {
+    "title": "Available spaces",
+    "empty": "There are no spaces available right now.",
+    "perHour": "/ hour",
+    "bookNow": "Book now",
+    "available": "Active listing",
+    "viewDetail": "View details",
+    "back": "Back to catalog",
+    "noImage": "No image",
+    "live": "Workspace catalogue",
+    "heroTitle": "Spaces designed for deep focus and collaboration.",
+    "heroSubtitle": "Book flexible desks, acoustic cabins, and premium meeting rooms with enterprise-grade connectivity.",
+    "desksAvailable": "Desk spaces",
+    "roomsReady": "Meeting rooms",
+    "workingHours": "Active shift",
+    "rulesTitle": "CoSpace flexible booking conditions",
+    "ruleDuration": "Full-hour blocks from 1 to 4 hours",
+    "ruleHours": "Open from 07:00 to 21:00",
+    "ruleCancellation": "Free cancellation up to 2 hours before",
+    "checkin": "Instant QR check-in",
+    "listed": "Listed spaces",
+    "availableCount": "{count} options available",
+    "timezoneLabel": "Booking timezone:"
+  },
+  "Auth": {
+    "loginTitle": "Log in",
+    "loginSubtitle": "Access your bookings and favorite spaces.",
+    "registerTitle": "Create your account",
+    "registerSubtitle": "Sign up to start booking spaces.",
+    "name": "Name",
+    "email": "Email address",
+    "password": "Password",
+    "login": "Log in",
+    "register": "Create account",
+    "submitting": "Working…",
+    "genericError": "The request could not be completed.",
+    "noAccount": "Don't have an account yet?",
+    "registerLink": "Sign up",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Log in"
+  },
+  "Booking": {
+    "title": "Book this space",
+    "start": "Start",
+    "end": "End",
+    "loginPrompt": "Log in to confirm your booking.",
+    "submit": "Confirm booking",
+    "submitting": "Booking…",
+    "error": "The booking could not be created."
+  },
+  "Dashboard": {
+    "title": "My bookings",
+    "empty": "You don't have any bookings yet.",
+    "cancel": "Cancel booking",
+    "loadError": "Bookings could not be loaded.",
+    "status": { "CONFIRMED": "Confirmed", "CANCELLED": "Cancelled" }
+  },
+  "Admin": {
+    "title": "Manage spaces",
+    "name": "Space name",
+    "description": "Description",
+    "type": "Space type",
+    "price": "Price per hour (USD)",
+    "imageUrl": "Image URL (optional)",
+    "desk": "Desk",
+    "meetingRoom": "Meeting room",
+    "cabin": "Cabin",
+    "create": "Create space",
+    "update": "Save changes",
+    "cancelEdit": "Stop editing",
+    "edit": "Edit",
+    "deactivate": "Deactivate",
+    "reactivate": "Reactivate",
+    "active": "Active",
+    "inactive": "Inactive",
+    "error": "Spaces could not be managed."
+  }
+}

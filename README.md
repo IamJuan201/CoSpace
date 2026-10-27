@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CoSpace
 
-## Getting Started
+Aplicación de coworking para consultar espacios y reservar escritorios, salas de reuniones y cabinas por horas. Construida con Next.js App Router, TypeScript, Tailwind CSS v4, next-intl y Prisma sobre PostgreSQL.
 
-First, run the development server:
+## Requisitos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 22 o superior y npm.
+- PostgreSQL local/remoto (por ejemplo, Supabase).
+- Docker opcional.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuración local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Instala dependencias con `npm ci`.
+2. Copia `.env.example` a `.env` y completa las variables.
+3. Aplica la migración y crea los datos iniciales:
+	- `npx prisma migrate deploy`
+	- `npx prisma db seed`
+4. Inicia el servidor con `npm run dev` y abre http://localhost:3000.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+La aplicación está disponible en español (`/es`) e inglés (`/en`). El usuario de ejemplo creado por el seed es `admin@cospace.com`, con contraseña `Admin123!`; cambia estas credenciales antes de exponer el entorno y no reutilices el seed en producción.
 
-## Learn More
+## Variables de entorno
 
-To learn more about Next.js, take a look at the following resources:
+| Variable | Descripción |
+| --- | --- |
+| `DATABASE_URL` | URL de conexión PostgreSQL usada por Prisma. |
+| `JWT_ACCESS_SECRET` | Secreto largo y aleatorio para tokens de acceso. |
+| `JWT_REFRESH_SECRET` | Secreto distinto, largo y aleatorio para refresh tokens. |
+| `ACCESS_TOKEN_EXPIRES_IN` | Vigencia del token de acceso (por defecto `15m`). |
+| `REFRESH_TOKEN_EXPIRES_IN` | Vigencia del refresh token (por defecto `7d`). |
+| `BUSINESS_TIMEZONE` | Zona horaria donde aplican los horarios de reserva (por defecto `America/Bogota`). |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Comandos
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `npm run dev`: servidor local en el puerto 3000.
+- `npm run build`: build de producción.
+- `npm start`: sirve el build.
+- `npm run lint`: ESLint.
+- `npm run typecheck`: comprobación TypeScript.
+- `npm test`: tests de reglas de negocio.
+- `npx prisma db seed`: crea admin y espacios de ejemplo.
 
-## Deploy on Vercel
+## Funcionalidades
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Registro/login con cookies HttpOnly, access/refresh tokens y logout API.
+- Catálogo público y detalle de espacios activos.
+- Reserva por intervalos horarios; el dashboard permite consultar/cancelar reservas.
+- Administración de espacios restringida a usuarios `ADMIN`.
+- API JSON en `/api`; ver `src/app/api` para las rutas.
+- Traducciones en `messages/es.json` y `messages/en.json`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Docker
+
+Configura en `.env` las variables requeridas y ejecuta `docker compose up --build`. El contenedor espera una base PostgreSQL externa; aplica las migraciones a esa base antes de arrancar la app. Para desplegar el contenedor en producción se recomienda ejecutar `npx prisma migrate deploy` como paso de release separado.
+
+## Despliegue en Vercel y Supabase
+
+1. Crea una base PostgreSQL en Supabase y configura `DATABASE_URL` en los ajustes del proyecto Vercel.
+2. Configura `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET` (valores aleatorios y distintos), expiraciones y `BUSINESS_TIMEZONE` como variables de entorno.
+3. Configura el comando de build para ejecutar `prisma generate` y `next build` (el hook `postinstall` genera el cliente Prisma).
+4. Ejecuta `npx prisma migrate deploy` contra la base de producción antes de enviar tráfico.
+5. Despliega desde la integración Git de Vercel y verifica login, reserva y cookies bajo HTTPS.
+
+URL de producción: pendiente de crear el proyecto y desplegarlo.
+
+## Seguridad y alcance
+
+El seed contiene una contraseña demostrativa; no es una credencial de producción. Configura secretos únicos, revisa las políticas de acceso de PostgreSQL y limita quién puede registrarse como admin. No se incluye `DATABASE_URL` ni una URL de despliegue porque dependen de las cuentas e infraestructura del propietario.
