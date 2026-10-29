@@ -92,6 +92,8 @@
     "title": "Reservar este espacio",
     "start": "Inicio",
     "end": "Fin",
+    "timeRule": "Elige horas en punto y reserva entre 1 y 4 horas completas (07:00–21:00).",
+    "invalidDuration": "El inicio debe ser en punto y la reserva debe durar de 1 a 4 horas completas.",
     "loginPrompt": "Inicia sesión para confirmar tu reserva.",
     "submit": "Confirmar reserva",
     "submitting": "Reservando…",

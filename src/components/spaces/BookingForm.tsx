@@ -22,6 +22,20 @@ export default function BookingForm({ spaceId, isAuthenticated }: BookingFormPro
   async function submit(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const startTime = new Date(String(data.get("startTime")));
+    const endTime = new Date(String(data.get("endTime")));
+    const durationHours = (endTime.getTime() - startTime.getTime()) / (60 * 60 * 1000);
+
+    if (
+      startTime.getMinutes() !== 0 ||
+      !Number.isInteger(durationHours) ||
+      durationHours < 1 ||
+      durationHours > 4
+    ) {
+      setError(t("invalidDuration"));
+      return;
+    }
+
     setBusy(true);
     setError("");
     try {
@@ -29,8 +43,8 @@ export default function BookingForm({ spaceId, isAuthenticated }: BookingFormPro
         method: "POST",
         body: JSON.stringify({
           spaceId,
-          startTime: new Date(String(data.get("startTime"))).toISOString(),
-          endTime: new Date(String(data.get("endTime"))).toISOString(),
+          startTime: startTime.toISOString(),
+          endTime: endTime.toISOString(),
         }),
       });
       router.push("/dashboard");
@@ -42,6 +56,7 @@ export default function BookingForm({ spaceId, isAuthenticated }: BookingFormPro
   return (
     <form onSubmit={submit} className="mt-6 grid gap-3 rounded-xl border border-zinc-200 bg-zinc-50 p-4">
       <h2 className="font-semibold text-zinc-900">{t("title")}</h2>
+      <p className="text-xs text-zinc-600">{t("timeRule")}</p>
       <label className="grid gap-1 text-sm text-(--muted)">{t("start")}<input name="startTime" type="datetime-local" step={3600} required className="rounded-xl border border-[#c6c6cd] bg-white px-3 py-3 outline-none focus:border-(--accent) focus:ring-2 focus:ring-[#ffdbce]" /></label>
       <label className="grid gap-1 text-sm text-(--muted)">{t("end")}<input name="endTime" type="datetime-local" step={3600} required className="rounded-xl border border-[#c6c6cd] bg-white px-3 py-3 outline-none focus:border-(--accent) focus:ring-2 focus:ring-[#ffdbce]" /></label>
       {error && <p role="alert" className="text-sm text-red-700">{error}</p>}

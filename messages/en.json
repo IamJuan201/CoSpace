@@ -92,6 +92,8 @@
     "title": "Book this space",
     "start": "Start",
     "end": "End",
+    "timeRule": "Choose an exact hour and book 1 to 4 full hours (07:00–21:00).",
+    "invalidDuration": "Start on the hour and choose a duration of 1 to 4 full hours.",
     "loginPrompt": "Log in to confirm your booking.",
     "submit": "Confirm booking",
     "submitting": "Booking…",
