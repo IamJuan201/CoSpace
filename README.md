@@ -56,10 +56,12 @@ Configura en `.env` las variables requeridas y ejecuta `docker compose up --buil
 ## Despliegue en Vercel y Supabase
 
 1. Crea una base PostgreSQL en Supabase y configura `DATABASE_URL` en los ajustes del proyecto Vercel.
-2. Configura `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET` (valores aleatorios y distintos), expiraciones y `BUSINESS_TIMEZONE` como variables de entorno.
-3. Configura el comando de build para ejecutar `prisma generate` y `next build` (el hook `postinstall` genera el cliente Prisma).
-4. Ejecuta `npx prisma migrate deploy` contra la base de producción antes de enviar tráfico.
-5. Despliega desde la integración Git de Vercel y verifica login, reserva y cookies bajo HTTPS.
+2. En **Settings → Environment Variables**, configura `DATABASE_URL`, `JWT_ACCESS_SECRET` y `JWT_REFRESH_SECRET` para Production y Preview. Los dos secretos JWT deben ser aleatorios, distintos y de al menos 32 caracteres. `ACCESS_TOKEN_EXPIRES_IN`, `REFRESH_TOKEN_EXPIRES_IN` y `BUSINESS_TIMEZONE` son opcionales.
+3. En Vercel, deja el framework como Next.js, el comando de instalación como `npm install` y el de build como `npm run build`. El script `postinstall` genera el cliente Prisma; no hace falta reemplazar el comando de build.
+4. Aplica las migraciones de Prisma a la base de datos de producción antes de enviar tráfico: `npx prisma migrate deploy`. Hazlo desde un entorno seguro que tenga `DATABASE_URL` de producción y acceso al proyecto. El build de Vercel no ejecuta migraciones automáticamente.
+5. Despliega desde la integración Git de Vercel y verifica que las variables estén asignadas al entorno correcto. Tras cambiar variables, crea un nuevo despliegue para que surtan efecto.
+
+Si el build termina pero la app falla al consultar datos, comprueba que las migraciones estén aplicadas y que `DATABASE_URL` apunte a la base correcta. Si login o registro falla, revisa que ambos secretos JWT estén configurados tanto en Production como en Preview. No compartas esos valores en capturas ni logs.
 
 URL de producción: pendiente de crear el proyecto y desplegarlo.
 
