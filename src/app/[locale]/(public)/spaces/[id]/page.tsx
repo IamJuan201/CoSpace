@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getFormatter, getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getActiveSpaceById } from "@/lib/spaces";
+import { getCurrentUser } from "@/lib/current-user";
 import SpaceImage from "@/components/spaces/SpaceImage";
 import BookingForm from "@/components/spaces/BookingForm";
 
@@ -18,6 +19,7 @@ export default async function SpaceDetailPage({
 
   const space = await getActiveSpaceById(id);
   if (!space) notFound();
+  const currentUser = await getCurrentUser();
 
   const t = await getTranslations("Spaces");
   const tTypes = await getTranslations("SpaceTypes");
@@ -53,7 +55,7 @@ export default async function SpaceDetailPage({
           <p className="text-2xl font-bold text-(--ink)">
             {price} <span className="text-base font-normal text-zinc-500">{t("perHour")}</span>
           </p>
-          <BookingForm spaceId={space.id} />
+          <BookingForm spaceId={space.id} isAuthenticated={Boolean(currentUser)} />
         </div>
       </div>
     </section>

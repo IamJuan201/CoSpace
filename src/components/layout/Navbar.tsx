@@ -1,48 +1,10 @@
 import type { ReactElement } from "react";
-import { cookies } from "next/headers";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { prisma } from "@/lib/prisma";
-import { hashToken, type TokenPayload, verifyAccessToken, verifyRefreshToken } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/current-user";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 import AccountMenu from "@/components/layout/AccountMenu";
 import Brand from "./Brand";
-
-async function getCurrentUser(): Promise<{ name: string; role: "USER" | "ADMIN" } | null> {
-  try {
-    const cookieStore = await cookies();
-    const accessToken = cookieStore.get("access_token")?.value;
-    const refreshToken = cookieStore.get("refresh_token")?.value;
-    let payload: TokenPayload | null = null;
-    let usedRefreshToken = false;
-
-    try {
-      if (accessToken) payload = verifyAccessToken(accessToken);
-    } catch {
-      // Si expiró el token de acceso, se comprueba el de renovación.
-    }
-    if (!payload) {
-      try {
-        if (refreshToken) {
-          payload = verifyRefreshToken(refreshToken);
-          usedRefreshToken = true;
-        }
-      } catch {
-        // No hay una sesión válida.
-      }
-    }
-    if (!payload) return null;
-
-    const user = await prisma.user.findUnique({
-      where: { id: payload.userId },
-      select: { name: true, role: true, refreshToken: true },
-    });
-    if (!user || (usedRefreshToken && user.refreshToken !== hashToken(refreshToken!))) return null;
-    return { name: user.name, role: user.role };
-  } catch {
-    return null;
-  }
-}
 
 export default async function Navbar(): Promise<ReactElement> {
   const t = await getTranslations("Nav");
