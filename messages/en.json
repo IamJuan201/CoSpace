@@ -1,6 +1,6 @@
 {
   "Metadata": {
-    "title": "CoSpace",
+    "title": "CoSpace | Spaces to do your best work",
     "description": "Book coworking desks, meeting rooms and cabins by the hour"
   },
   "Nav": {
@@ -10,6 +10,8 @@
     "login": "Log in",
     "register": "Sign up",
     "admin": "Admin",
+    "switchToDark": "Switch to dark mode",
+    "switchToLight": "Switch to light mode",
     "logout": "Log out",
     "loggingOut": "Logging out…",
     "logoutError": "Could not log out. Please try again."
@@ -37,10 +39,26 @@
     "CABIN": "Cabin"
   },
   "Home": {
-    "title": "Your workspace, by the hour",
-    "subtitle": "Book desks, meeting rooms and private cabins in minutes.",
+    "eyebrow": "Spaces with purpose · CoSpace",
+    "title": "Make room for great work.",
+    "subtitle": "Find the place that helps you think clearly, create calmly, and share ideas. Book a workspace by the hour, your way.",
     "cta": "Browse spaces",
+    "heroNote": "No fixed plans. Just show up and work.",
+    "hoursLabel": "Here for your day",
+    "durationLabel": "Flexible booking",
+    "optionsLabel": "Ways to work",
+    "photoAlt": "Bright coworking space with shared tables and large windows",
+    "imageBadge": "Room for your ideas",
+    "cardEyebrow": "Your day, your pace",
+    "cardTitle": "A good space changes what you can do.",
+    "cardCaption": "Find your next place to work",
+    "sectionEyebrow": "Made for every kind of day",
     "typesTitle": "Choose how you want to work",
+    "sectionSubtitle": "A corner to focus, meet, or take a breath. Find the space that fits your day.",
+    "exploreType": "Explore spaces",
+    "closingEyebrow": "Your next big idea starts here",
+    "closingTitle": "The right place changes everything.",
+    "closingSubtitle": "Explore spaces designed for good work, at your pace and without the hassle.",
     "typeDescriptions": {
       "DESK": "An individual desk to focus and move your projects forward.",
       "MEETING_ROOM": "Equipped rooms for team meetings and presentations.",

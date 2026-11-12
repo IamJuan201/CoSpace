@@ -43,7 +43,7 @@ export default function AccountMenu({ name, role }: AccountMenuProps): ReactElem
         aria-expanded={open}
         aria-haspopup="menu"
         onClick={() => setOpen((current) => !current)}
-        className="flex max-w-52 items-center gap-2 rounded-full border border-[#e5eeff] bg-white py-1.5 pl-1.5 pr-3 text-sm font-semibold text-(--ink) transition hover:bg-[#eff4ff]"
+        className="flex max-w-52 items-center gap-2 rounded-full border border-(--line) bg-white py-1.5 pl-1.5 pr-3 text-sm font-semibold text-(--ink) transition hover:bg-(--sage)"
       >
         <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-(--ink) text-sm font-bold text-white">
           {initial}
@@ -52,14 +52,14 @@ export default function AccountMenu({ name, role }: AccountMenuProps): ReactElem
         <span aria-hidden="true" className="text-xs">▾</span>
       </button>
       {open && (
-        <div role="menu" className="absolute right-0 top-full z-50 mt-2 min-w-48 rounded-xl border border-[#e5eeff] bg-white p-2 shadow-lg">
+        <div role="menu" className="absolute right-0 top-full z-50 mt-2 min-w-48 rounded-xl border border-(--line) bg-white p-2 shadow-lg">
           <p className="truncate px-3 py-2 text-sm font-semibold text-(--ink)">{name}</p>
-          <div className="my-1 border-t border-[#e5eeff]" />
+          <div className="my-1 border-t border-(--line)" />
           <Link
             role="menuitem"
             href={role === "ADMIN" ? "/admin" : "/dashboard"}
             onClick={() => setOpen(false)}
-            className="block rounded-lg px-3 py-2 text-sm text-(--muted) hover:bg-[#eff4ff] hover:text-(--ink)"
+            className="block rounded-lg px-3 py-2 text-sm text-(--muted) hover:bg-(--sage) hover:text-(--ink)"
           >
             {role === "ADMIN" ? t("admin") : t("dashboard")}
           </Link>

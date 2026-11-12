@@ -42,7 +42,7 @@ export default async function SpacesCatalog({ locale }: SpacesCatalogProps): Pro
         <div className="relative mb-8 overflow-hidden rounded-2xl bg-[#141b2e] p-5 text-white shadow-sm sm:p-6">
           <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#ffdbce] text-lg font-bold text-[#571a00]">i</span>
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-(--accent-soft) text-lg font-bold text-(--accent-deep)">i</span>
               <div>
                 <h2 className="font-semibold tracking-tight">{t("rulesTitle")}</h2>
                 <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs leading-5 text-[#dae2fd] sm:text-sm">
@@ -59,7 +59,7 @@ export default async function SpacesCatalog({ locale }: SpacesCatalogProps): Pro
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <h2 className="text-xl font-bold tracking-tight text-(--ink)">{t("listed")}</h2>
-            <span className="rounded-full bg-[#dce9ff] px-2.5 py-1 text-xs font-medium text-[#45464d]">{t("availableCount", { count: total })}</span>
+            <span className="rounded-full bg-(--sage) px-2.5 py-1 text-xs font-medium text-(--muted)">{t("availableCount", { count: total })}</span>
           </div>
           <p className="text-xs text-(--muted) sm:text-sm">{t("timezoneLabel")} <span className="font-semibold text-(--ink)">{timezone}</span></p>
         </div>

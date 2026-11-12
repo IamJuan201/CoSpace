@@ -11,14 +11,14 @@ export default function LocaleSwitcher(): ReactElement {
   const router = useRouter();
 
   return (
-    <div className="flex gap-1">
+    <div className="flex shrink-0 gap-0.5">
       {routing.locales.map((locale) => (
         <button
           key={locale}
           type="button"
           aria-pressed={locale === currentLocale}
           onClick={() => router.replace(pathname, { locale })}
-          className="rounded-md px-2 py-1 text-xs font-semibold text-(--muted) transition-colors aria-pressed:bg-white aria-pressed:text-(--ink) aria-pressed:shadow-sm"
+          className="rounded-md px-1.5 py-1 text-[11px] font-semibold text-(--muted) transition-colors aria-pressed:bg-white aria-pressed:text-(--ink) aria-pressed:shadow-sm sm:px-2 sm:text-xs"
         >
           {locale.toUpperCase()}
         </button>

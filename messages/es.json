@@ -1,6 +1,6 @@
 {
   "Metadata": {
-    "title": "CoSpace",
+    "title": "CoSpace | Espacios para trabajar mejor",
     "description": "Reserva escritorios, salas y cabinas de coworking por horas"
   },
   "Nav": {
@@ -10,6 +10,8 @@
     "login": "Iniciar sesión",
     "register": "Registrarse",
     "admin": "Administración",
+    "switchToDark": "Cambiar a modo oscuro",
+    "switchToLight": "Cambiar a modo claro",
     "logout": "Cerrar sesión",
     "loggingOut": "Cerrando sesión…",
     "logoutError": "No se pudo cerrar la sesión. Inténtalo de nuevo."
@@ -37,10 +39,26 @@
     "CABIN": "Cabina"
   },
   "Home": {
-    "title": "Tu espacio de trabajo, por horas",
-    "subtitle": "Reserva escritorios, salas de reuniones y cabinas privadas en minutos.",
+    "eyebrow": "Espacios con intención · CoSpace",
+    "title": "Haz espacio para hacer grandes cosas.",
+    "subtitle": "Encuentra el lugar que te ayuda a pensar mejor, crear con calma y compartir ideas. Reserva tu espacio por horas, a tu manera.",
     "cta": "Explorar espacios",
+    "heroNote": "Sin planes fijos. Solo ven y trabaja.",
+    "hoursLabel": "Estamos contigo",
+    "durationLabel": "Reserva flexible",
+    "optionsLabel": "Formas de trabajar",
+    "photoAlt": "Espacio de coworking luminoso con mesas compartidas y grandes ventanas",
+    "imageBadge": "Un lugar para tus ideas",
+    "cardEyebrow": "Tu día, a tu ritmo",
+    "cardTitle": "Un buen espacio cambia lo que puedes hacer.",
+    "cardCaption": "Encuentra tu próximo lugar de trabajo",
+    "sectionEyebrow": "Diseñado para cada jornada",
     "typesTitle": "Elige cómo quieres trabajar",
+    "sectionSubtitle": "Un rincón para enfocarte, reunirte o tomar una pausa. Encuentra el espacio que se adapta a tu día.",
+    "exploreType": "Ver espacios",
+    "closingEyebrow": "Tu siguiente gran idea empieza aquí",
+    "closingTitle": "El lugar correcto lo cambia todo.",
+    "closingSubtitle": "Explora espacios pensados para trabajar bien, a tu ritmo y sin complicaciones.",
     "typeDescriptions": {
       "DESK": "Un puesto individual para concentrarte y avanzar en tus proyectos.",
       "MEETING_ROOM": "Salas equipadas para reuniones de equipo y presentaciones.",

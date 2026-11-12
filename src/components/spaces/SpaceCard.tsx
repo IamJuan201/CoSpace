@@ -21,7 +21,7 @@ export default function SpaceCard({ space }: SpaceCardProps): ReactElement {
   });
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-[#e5eeff] bg-white shadow-[0_1px_3px_rgba(11,28,48,0.04)] transition-shadow hover:shadow-[0_10px_30px_rgba(11,28,48,0.1)]">
+    <article className="group flex flex-col overflow-hidden rounded-[22px] border border-(--line) bg-white shadow-[0_1px_3px_rgba(23,37,31,0.04)] transition-shadow hover:shadow-[0_14px_36px_rgba(23,37,31,0.11)]">
       <div className="relative">
         <SpaceImage
           src={space.imageUrl}
@@ -37,11 +37,11 @@ export default function SpaceCard({ space }: SpaceCardProps): ReactElement {
         </span>
         <h3 className="text-lg font-bold tracking-tight text-(--ink)">{space.name}</h3>
         <p className="line-clamp-2 min-h-10 flex-1 text-sm leading-5 text-(--muted)">{space.description}</p>
-        <div className="mt-2 flex items-end justify-between gap-3 border-t border-[#eff4ff] pt-4">
+        <div className="mt-2 flex items-end justify-between gap-3 border-t border-(--line) pt-4">
           <p className="font-bold text-(--ink)">
             <span className="text-xl">{price}</span> <span className="text-xs font-normal text-(--muted)">{t("perHour")}</span>
           </p>
-          <Link href={`/spaces/${space.id}`} className={`${buttonClasses("primary")} rounded-lg! bg-(--accent-deep)! px-4! py-2.5! hover:bg-(--accent)!`}>
+          <Link href={`/spaces/${space.id}`} className={`${buttonClasses("primary")} rounded-lg! bg-(--accent-action)! px-4! py-2.5!`}>
             {t("bookNow")} <span aria-hidden="true" className="ml-1">→</span>
           </Link>
         </div>
