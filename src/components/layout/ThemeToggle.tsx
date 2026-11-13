@@ -1,19 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import type { ReactElement } from "react";
 import { useTranslations } from "next-intl";
 
 type Theme = "light" | "dark";
 
+const THEME_CHANGE_EVENT = "cospace-theme-change";
+
+function subscribeToTheme(onStoreChange: () => void): () => void {
+  window.addEventListener(THEME_CHANGE_EVENT, onStoreChange);
+  return () => window.removeEventListener(THEME_CHANGE_EVENT, onStoreChange);
+}
+
+function getThemeSnapshot(): Theme {
+  return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+}
+
+function getServerThemeSnapshot(): Theme {
+  return "light";
+}
+
 export default function ThemeToggle(): ReactElement {
   const t = useTranslations("Nav");
-  const [theme, setTheme] = useState<Theme>("light");
-
-  useEffect(() => {
-    const saved = document.documentElement.dataset.theme;
-    if (saved === "dark" || saved === "light") setTheme(saved);
-  }, []);
+  const theme = useSyncExternalStore(
+    subscribeToTheme,
+    getThemeSnapshot,
+    getServerThemeSnapshot,
+  );
 
   function toggleTheme(): void {
     const nextTheme: Theme = theme === "light" ? "dark" : "light";
@@ -23,7 +37,7 @@ export default function ThemeToggle(): ReactElement {
     } catch {
       // Keep the selected theme active for this page even if storage is unavailable.
     }
-    setTheme(nextTheme);
+    window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
   }
 
   const isDark = theme === "dark";
