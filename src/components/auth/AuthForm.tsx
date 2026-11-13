@@ -48,21 +48,21 @@ export default function AuthForm({ mode }: AuthFormProps): ReactElement {
   return (
     <form onSubmit={submit} className="space-y-5">
       {isRegister && (
-        <label className="block space-y-1 text-sm font-medium text-zinc-700">
+        <label className="block space-y-1 text-sm font-medium text-(--ink)">
           {t("name")}
           <input name="name" autoComplete="name" required className="w-full rounded-xl border border-(--line) bg-(--background) px-3 py-3 outline-none transition focus:border-(--accent) focus:ring-2 focus:ring-(--accent-soft)" />
         </label>
       )}
-      <label className="block space-y-1 text-sm font-medium text-zinc-700">
+      <label className="block space-y-1 text-sm font-medium text-(--ink)">
         {t("email")}
         <input name="email" type="email" autoComplete="email" required className="w-full rounded-xl border border-(--line) bg-(--background) px-3 py-3 outline-none transition focus:border-(--accent) focus:ring-2 focus:ring-(--accent-soft)" />
       </label>
-      <label className="block space-y-1 text-sm font-medium text-zinc-700">
+      <label className="block space-y-1 text-sm font-medium text-(--ink)">
         {t("password")}
         <input name="password" type="password" autoComplete={isRegister ? "new-password" : "current-password"} minLength={isRegister ? 8 : undefined} required className="w-full rounded-xl border border-(--line) bg-(--background) px-3 py-3 outline-none transition focus:border-(--accent) focus:ring-2 focus:ring-(--accent-soft)" />
       </label>
-      {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
-      <Button type="submit" disabled={busy} className="w-full rounded-xl! bg-(--accent-deep)! py-3! hover:bg-(--accent)!">{busy ? t("submitting") : t(isRegister ? "register" : "login")}</Button>
+      {error && <p role="alert" className="text-sm text-(--danger-ink)">{error}</p>}
+      <Button type="submit" disabled={busy} className="w-full rounded-xl! py-3!">{busy ? t("submitting") : t(isRegister ? "register" : "login")}</Button>
     </form>
   );
 }

@@ -70,8 +70,8 @@ export default function AdminSpaces(): ReactElement {
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-10">
       <h1 className="mb-6 text-3xl font-bold tracking-tight text-(--ink)">{t("title")}</h1>
-      {error && <p role="alert" className="mb-4 rounded-xl bg-red-50 p-3 text-sm text-red-700">{error}</p>}
-      <form onSubmit={save} className="mb-8 grid gap-3 rounded-2xl border border-(--line) bg-white p-5 shadow-sm sm:grid-cols-2">
+      {error && <p role="alert" className="mb-4 rounded-xl bg-(--danger-surface) p-3 text-sm text-(--danger-ink)">{error}</p>}
+      <form onSubmit={save} className="mb-8 grid gap-3 rounded-2xl border border-(--line) bg-(--surface) p-5 shadow-sm sm:grid-cols-2">
         <input aria-label={t("name")} placeholder={t("name")} required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="rounded-xl border border-(--line) bg-(--background) px-3 py-3 text-(--ink) outline-none focus:border-(--accent) focus:ring-2 focus:ring-(--accent-soft)" />
         <select aria-label={t("type")} value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value as typeof form.type })} className="rounded-xl border border-(--line) bg-(--background) px-3 py-3 text-(--ink)"><option value="DESK">{t("desk")}</option><option value="MEETING_ROOM">{t("meetingRoom")}</option><option value="CABIN">{t("cabin")}</option></select>
         <textarea aria-label={t("description")} placeholder={t("description")} required value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="rounded-xl border border-(--line) bg-(--background) px-3 py-3 text-(--ink) sm:col-span-2" />
@@ -79,7 +79,7 @@ export default function AdminSpaces(): ReactElement {
         <input aria-label={t("imageUrl")} type="url" placeholder={t("imageUrl")} value={form.imageUrl} onChange={(e) => setForm({ ...form, imageUrl: e.target.value })} className="rounded-xl border border-(--line) bg-(--background) px-3 py-3 text-(--ink)" />
         <div className="flex gap-2 sm:col-span-2"><Button disabled={busy}>{editing ? t("update") : t("create")}</Button>{editing && <Button type="button" variant="secondary" onClick={() => { setEditing(null); setForm(emptyForm); }}>{t("cancelEdit")}</Button>}</div>
       </form>
-      <div className="grid gap-3">{spaces.map((space) => <article key={space.id} className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#e5eeff] bg-white p-4"><div><h2 className="font-semibold text-(--ink)">{space.name}</h2><p className="text-sm text-(--muted)">{space.type} · {space.pricePerHour} USD · {space.isActive ? t("active") : t("inactive")}</p></div><div className="flex gap-2"><Button variant="secondary" onClick={() => edit(space)}>{t("edit")}</Button><Button variant="secondary" onClick={() => void toggleActive(space)}>{space.isActive ? t("deactivate") : t("reactivate")}</Button></div></article>)}</div>
+      <div className="grid gap-3">{spaces.map((space) => <article key={space.id} className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-(--line) bg-(--surface) p-4"><div><h2 className="font-semibold text-(--ink)">{space.name}</h2><p className="text-sm text-(--muted)">{space.type} · {space.pricePerHour} USD · {space.isActive ? t("active") : t("inactive")}</p></div><div className="flex gap-2"><Button variant="secondary" onClick={() => edit(space)}>{t("edit")}</Button><Button variant="secondary" onClick={() => void toggleActive(space)}>{space.isActive ? t("deactivate") : t("reactivate")}</Button></div></article>)}</div>
     </section>
   );
 }

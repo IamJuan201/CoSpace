@@ -21,7 +21,7 @@ export default function SpaceCard({ space }: SpaceCardProps): ReactElement {
   });
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-[22px] border border-(--line) bg-white shadow-[0_1px_3px_rgba(23,37,31,0.04)] transition-shadow hover:shadow-[0_14px_36px_rgba(23,37,31,0.11)]">
+    <article className="group flex flex-col overflow-hidden rounded-[22px] border border-(--line) bg-(--surface) shadow-[0_1px_3px_rgba(23,37,31,0.04)] transition-shadow hover:shadow-[0_14px_36px_rgba(23,37,31,0.11)]">
       <div className="relative">
         <SpaceImage
           src={space.imageUrl}
@@ -29,7 +29,7 @@ export default function SpaceCard({ space }: SpaceCardProps): ReactElement {
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="aspect-5/3 transition-transform duration-500 group-hover:scale-[1.02]"
         />
-        {space.isActive && <span className="absolute left-3 top-3 rounded-full bg-[#ffffffed] px-3 py-1 text-[11px] font-semibold text-emerald-800 shadow-sm">● {t("available")}</span>}
+        {space.isActive && <span className="absolute left-3 top-3 rounded-full bg-(--surface-floating)/95 px-3 py-1 text-[11px] font-semibold text-(--accent-deep) shadow-sm">● {t("available")}</span>}
       </div>
       <div className="flex flex-1 flex-col gap-2.5 p-4 sm:p-5">
         <span className="text-[10px] font-bold uppercase tracking-[0.13em] text-(--accent-deep)">

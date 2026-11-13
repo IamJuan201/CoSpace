@@ -12,7 +12,7 @@ export default function Footer(): ReactElement {
         <FooterColumn title={t("platform")} items={[t("workspaces"), t("bookings"), t("hourlyRates")]} />
         <FooterColumn title={t("community")} items={[t("guidelines"), t("events"), t("locations")]} />
         <div><h2 className="mb-3 text-sm font-bold text-(--ink)">{t("support")}</h2><p className="text-sm leading-6 text-(--muted)">{t("supportHours")}</p><a className="mt-3 inline-block text-sm font-semibold text-(--accent-deep)" href="mailto:soporte@cospace.io">soporte@cospace.io</a></div>
-        <div className="flex flex-col gap-3 border-t border-[#d9d9d0] pt-5 text-xs text-(--muted) sm:flex-row sm:items-center sm:justify-between md:col-span-4"><span>{t("rights", { year: String(new Date().getFullYear()) })}</span><div className="flex gap-5"><span>{t("privacy")}</span><span>{t("terms")}</span><span>{t("security")}</span></div></div>
+        <div className="flex flex-col gap-3 border-t border-(--line) pt-5 text-xs text-(--muted) sm:flex-row sm:items-center sm:justify-between md:col-span-4"><span>{t("rights", { year: String(new Date().getFullYear()) })}</span><div className="flex gap-5"><span>{t("privacy")}</span><span>{t("terms")}</span><span>{t("security")}</span></div></div>
       </div>
     </footer>
   );

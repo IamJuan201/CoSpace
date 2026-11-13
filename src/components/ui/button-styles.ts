@@ -5,7 +5,7 @@ const BASE_CLASSES =
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
   primary: "bg-(--accent-action) text-white hover:brightness-110",
-  secondary: "border border-(--line) bg-white text-(--ink) hover:bg-(--sage)",
+  secondary: "border border-(--line) bg-(--surface) text-(--ink) hover:bg-(--sage)",
 };
 
 export function buttonClasses(variant: ButtonVariant = "primary"): string {

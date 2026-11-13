@@ -46,14 +46,14 @@ export default async function SpaceDetailPage({
           priority
         />
 
-        <div className="flex flex-col gap-4 rounded-2xl border border-[#e5eeff] bg-white p-6 sm:p-8">
-          <span className="text-xs font-semibold uppercase tracking-wide text-indigo-600">
+        <div className="flex flex-col gap-4 rounded-2xl border border-(--line) bg-(--surface) p-6 sm:p-8">
+          <span className="text-xs font-semibold uppercase tracking-wide text-(--accent-deep)">
             {tTypes(space.type)}
           </span>
           <h1 className="text-3xl font-bold tracking-tight text-(--ink)">{space.name}</h1>
           <p className="leading-7 text-(--muted)">{space.description}</p>
           <p className="text-2xl font-bold text-(--ink)">
-            {price} <span className="text-base font-normal text-zinc-500">{t("perHour")}</span>
+            {price} <span className="text-base font-normal text-(--muted)">{t("perHour")}</span>
           </p>
           <BookingForm spaceId={space.id} isAuthenticated={Boolean(currentUser)} />
         </div>

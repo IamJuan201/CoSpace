@@ -43,16 +43,16 @@ export default function AccountMenu({ name, role }: AccountMenuProps): ReactElem
         aria-expanded={open}
         aria-haspopup="menu"
         onClick={() => setOpen((current) => !current)}
-        className="flex max-w-52 items-center gap-2 rounded-full border border-(--line) bg-white py-1.5 pl-1.5 pr-3 text-sm font-semibold text-(--ink) transition hover:bg-(--sage)"
+        className="flex max-w-52 items-center gap-2 rounded-full border border-(--line) bg-(--surface) py-1.5 pl-1.5 pr-3 text-sm font-semibold text-(--ink) transition hover:bg-(--sage)"
       >
-        <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-(--ink) text-sm font-bold text-white">
+        <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#17251f] text-sm font-bold text-white">
           {initial}
         </span>
         <span className="truncate">{name}</span>
         <span aria-hidden="true" className="text-xs">▾</span>
       </button>
       {open && (
-        <div role="menu" className="absolute right-0 top-full z-50 mt-2 min-w-48 rounded-xl border border-(--line) bg-white p-2 shadow-lg">
+        <div role="menu" className="absolute right-0 top-full z-50 mt-2 min-w-48 rounded-xl border border-(--line) bg-(--surface) p-2 shadow-lg">
           <p className="truncate px-3 py-2 text-sm font-semibold text-(--ink)">{name}</p>
           <div className="my-1 border-t border-(--line)" />
           <Link
@@ -72,7 +72,7 @@ export default function AccountMenu({ name, role }: AccountMenuProps): ReactElem
           >
             {busy ? t("loggingOut") : t("logout")}
           </button>
-          {error && <p role="alert" className="px-3 py-1 text-xs text-red-700">{t("logoutError")}</p>}
+          {error && <p role="alert" className="px-3 py-1 text-xs text-(--danger-ink)">{t("logoutError")}</p>}
         </div>
       )}
     </div>

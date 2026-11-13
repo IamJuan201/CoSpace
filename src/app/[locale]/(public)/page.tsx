@@ -19,7 +19,7 @@ export default async function HomePage({ params }: HomePageProps): Promise<React
   return (
     <>
       <section className="relative isolate overflow-hidden bg-(--canvas)">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-48 -top-48 -z-10 h-[520px] w-[520px] rounded-full bg-[#e9e5d9] opacity-70 blur-3xl" />
+        <div aria-hidden="true" className="pointer-events-none absolute -right-48 -top-48 -z-10 h-[520px] w-[520px] rounded-full bg-(--surface-sage) opacity-70 blur-3xl" />
         <div className="mx-auto grid max-w-360 items-center gap-12 px-4 pb-16 pt-12 sm:px-6 sm:pb-20 sm:pt-16 lg:grid-cols-[.94fr_1.06fr] lg:gap-16 lg:px-10 lg:pb-24 lg:pt-20">
           <div className="max-w-2xl">
             <span className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-(--line) bg-(--surface)/80 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-(--ink) sm:text-[11px]">
@@ -43,7 +43,7 @@ export default async function HomePage({ params }: HomePageProps): Promise<React
           </div>
 
           <div className="relative mx-auto w-full max-w-[720px] lg:ml-auto">
-            <div className="relative aspect-[1.04/1] overflow-hidden rounded-[28px] bg-[#d8d8ce] shadow-[0_28px_70px_rgba(23,37,31,.18)] sm:aspect-[1.15/1] lg:aspect-[.98/1]">
+            <div className="relative aspect-[1.04/1] overflow-hidden rounded-[28px] bg-(--surface-muted) shadow-[0_28px_70px_rgba(23,37,31,.18)] sm:aspect-[1.15/1] lg:aspect-[.98/1]">
               <Image
                 src="https://images.pexels.com/photos/26966416/pexels-photo-26966416.jpeg?auto=compress&cs=tinysrgb&w=1800"
                 alt={t("photoAlt")}
@@ -53,7 +53,7 @@ export default async function HomePage({ params }: HomePageProps): Promise<React
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#142019]/55 via-transparent to-[#142019]/5" />
-              <div className="absolute left-5 top-5 rounded-full border border-white/50 bg-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-(--ink) shadow-sm backdrop-blur sm:left-7 sm:top-7">
+              <div className="absolute left-5 top-5 rounded-full border border-(--line) bg-(--surface-floating)/95 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-(--ink) shadow-sm backdrop-blur sm:left-7 sm:top-7">
                 {t("imageBadge")}
               </div>
               <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/30 bg-(--surface-floating)/95 p-5 shadow-lg backdrop-blur-md sm:bottom-7 sm:left-7 sm:right-auto sm:w-[360px] sm:p-6">
@@ -64,7 +64,7 @@ export default async function HomePage({ params }: HomePageProps): Promise<React
                 </div>
               </div>
             </div>
-            <div aria-hidden="true" className="absolute -bottom-5 -right-3 -z-10 h-32 w-32 rounded-full border border-[#d8d5c9] sm:-right-6 sm:h-40 sm:w-40" />
+            <div aria-hidden="true" className="absolute -bottom-5 -right-3 -z-10 h-32 w-32 rounded-full border border-(--line) sm:-right-6 sm:h-40 sm:w-40" />
           </div>
         </div>
       </section>
@@ -80,12 +80,12 @@ export default async function HomePage({ params }: HomePageProps): Promise<React
 
         <div className="grid gap-4 md:grid-cols-3">
           {Object.values(SpaceType).map((type, index) => (
-            <article key={type} className="group relative flex min-h-[270px] flex-col overflow-hidden rounded-[22px] border border-(--line) bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(23,37,31,.09)] sm:p-7">
+            <article key={type} className="group relative flex min-h-[270px] flex-col overflow-hidden rounded-[22px] border border-(--line) bg-(--surface) p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(23,37,31,.09)] sm:p-7">
               <div className="flex items-start justify-between">
                 <span className={`flex h-12 w-12 items-center justify-center rounded-2xl ${index === 1 ? "bg-(--surface-sage) text-(--ink)" : "bg-(--surface-terra) text-(--accent-deep)"}`}>
                   <SpaceIcon type={type} />
                 </span>
-                <span className="text-xs font-semibold tracking-[0.14em] text-[#a4a89f]">0{index + 1}</span>
+                <span className="text-xs font-semibold tracking-[0.14em] text-(--muted)">0{index + 1}</span>
               </div>
               <h3 className="mt-8 text-xl font-semibold tracking-[-0.03em] text-(--ink)">{tTypes(type)}</h3>
               <p className="mt-2 max-w-sm text-sm leading-6 text-(--muted)">{t(`typeDescriptions.${type}`)}</p>
@@ -97,7 +97,7 @@ export default async function HomePage({ params }: HomePageProps): Promise<React
         </div>
       </section>
 
-      <section className="mx-4 mb-16 overflow-hidden rounded-[28px] bg-(--ink) text-[#f7f5ef] sm:mx-6 sm:mb-20 lg:mx-auto lg:mb-24 lg:max-w-[calc(1440px-80px)]">
+      <section className="mx-4 mb-16 overflow-hidden rounded-[28px] bg-[#17251f] text-[#f7f5ef] sm:mx-6 sm:mb-20 lg:mx-auto lg:mb-24 lg:max-w-[calc(1440px-80px)]">
         <div className="relative flex flex-col gap-8 px-6 py-10 sm:px-10 sm:py-12 lg:flex-row lg:items-center lg:justify-between lg:px-14 lg:py-14">
           <div aria-hidden="true" className="pointer-events-none absolute -right-12 -top-32 h-72 w-72 rounded-full border border-white/10" />
           <div className="relative max-w-2xl">
@@ -105,7 +105,7 @@ export default async function HomePage({ params }: HomePageProps): Promise<React
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">{t("closingTitle")}</h2>
             <p className="mt-3 max-w-xl text-sm leading-6 text-white/65 sm:text-base">{t("closingSubtitle")}</p>
           </div>
-          <Link href="/spaces" className="relative inline-flex shrink-0 items-center justify-center rounded-full bg-[#f1e5d8] px-6 py-3.5 text-sm font-semibold text-(--ink) transition-colors hover:bg-white">
+          <Link href="/spaces" className="relative inline-flex shrink-0 items-center justify-center rounded-full bg-[#f1e5d8] px-6 py-3.5 text-sm font-semibold text-[#17251f] transition-colors hover:bg-white">
             {t("cta")} <span aria-hidden="true" className="ml-2 text-lg leading-none">↗</span>
           </Link>
         </div>

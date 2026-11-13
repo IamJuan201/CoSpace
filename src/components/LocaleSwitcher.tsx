@@ -18,7 +18,7 @@ export default function LocaleSwitcher(): ReactElement {
           type="button"
           aria-pressed={locale === currentLocale}
           onClick={() => router.replace(pathname, { locale })}
-          className="rounded-md px-1.5 py-1 text-[11px] font-semibold text-(--muted) transition-colors aria-pressed:bg-white aria-pressed:text-(--ink) aria-pressed:shadow-sm sm:px-2 sm:text-xs"
+          className="rounded-md px-1.5 py-1 text-[11px] font-semibold text-(--muted) transition-colors aria-pressed:bg-(--surface) aria-pressed:text-(--ink) aria-pressed:shadow-sm sm:px-2 sm:text-xs"
         >
           {locale.toUpperCase()}
         </button>

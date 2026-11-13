@@ -30,7 +30,7 @@ export default async function SpacesCatalog({ locale }: SpacesCatalogProps): Pro
             <h1 className="max-w-3xl text-[34px] font-bold leading-[1.13] tracking-[-0.035em] text-(--ink) sm:text-5xl">{t("heroTitle")}</h1>
             <p className="mt-4 max-w-3xl text-base leading-7 text-(--muted) sm:text-lg">{t("heroSubtitle")}</p>
           </div>
-          <div className="grid shrink-0 grid-cols-3 gap-4 rounded-2xl bg-white p-4 shadow-[0_1px_4px_rgba(11,28,48,0.06)] sm:gap-6 sm:px-5">
+          <div className="grid shrink-0 grid-cols-3 gap-4 rounded-2xl bg-(--surface) p-4 shadow-[0_1px_4px_rgba(11,28,48,0.06)] sm:gap-6 sm:px-5">
             <Metric value={String(deskCount)} label={t("desksAvailable")} />
             <Metric value={String(meetingRoomCount)} label={t("roomsReady")} />
             <Metric value="07–21h" label={t("workingHours")} accent />
@@ -64,7 +64,7 @@ export default async function SpacesCatalog({ locale }: SpacesCatalogProps): Pro
           <p className="text-xs text-(--muted) sm:text-sm">{t("timezoneLabel")} <span className="font-semibold text-(--ink)">{timezone}</span></p>
         </div>
         {spaces.length === 0 ? (
-          <div className="rounded-2xl bg-white px-6 py-16 text-center text-(--muted)">{t("empty")}</div>
+          <div className="rounded-2xl bg-(--surface) px-6 py-16 text-center text-(--muted)">{t("empty")}</div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">{spaces.map((space) => <SpaceCard key={space.id} space={space} />)}</div>
         )}

@@ -17,6 +17,10 @@
   --surface-floating: #fbfaf5;
   --surface-sage: #e8ece4;
   --surface-terra: #f3e2d8;
+  --danger-surface: #fef2f2;
+  --danger-ink: #b42318;
+  --selection-surface: #f3e2d8;
+  --selection-ink: #71331e;
 }
 
 :root[data-theme="dark"] {
@@ -37,6 +41,10 @@
   --surface-floating: #242e27;
   --surface-sage: #29362e;
   --surface-terra: #3b3029;
+  --danger-surface: #3b2524;
+  --danger-ink: #ffb4ab;
+  --selection-surface: #43342d;
+  --selection-ink: #f1f1e9;
 }
 
 body {
@@ -46,11 +54,7 @@ body {
   transition: background-color 180ms ease, color 180ms ease;
 }
 
-:root[data-theme="dark"] .bg-white {
-  background-color: var(--surface);
-}
-
 ::selection {
-  background: #f3e2d8;
-  color: #71331e;
+  background: var(--selection-surface);
+  color: var(--selection-ink);
 }

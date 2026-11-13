@@ -20,11 +20,11 @@ export default function SpaceImage({
   const t = useTranslations("Spaces");
 
   return (
-    <div className={`relative overflow-hidden bg-zinc-200 ${className}`}>
+    <div className={`relative overflow-hidden bg-(--surface-muted) ${className}`}>
       {src ? (
         <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
       ) : (
-        <span className="absolute inset-0 flex items-center justify-center text-sm text-zinc-500">
+        <span className="absolute inset-0 flex items-center justify-center text-sm text-(--muted)">
           {t("noImage")}
         </span>
       )}

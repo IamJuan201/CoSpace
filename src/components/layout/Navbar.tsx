@@ -17,13 +17,13 @@ export default async function Navbar(): Promise<ReactElement> {
         <div className="flex min-w-0 items-center gap-5 lg:gap-12">
           <Brand />
           <div className="hidden items-center gap-2 md:flex">
-            <Link href="/" className="rounded-full px-3.5 py-2 text-sm font-medium text-(--muted) transition-colors hover:bg-white hover:text-(--ink)">
+            <Link href="/" className="rounded-full px-3.5 py-2 text-sm font-medium text-(--muted) transition-colors hover:bg-(--surface) hover:text-(--ink)">
               {t("home")}
             </Link>
-            <Link href="/spaces" className="rounded-full px-3.5 py-2 text-sm font-medium text-(--muted) transition-colors hover:bg-white hover:text-(--ink)">
+            <Link href="/spaces" className="rounded-full px-3.5 py-2 text-sm font-medium text-(--muted) transition-colors hover:bg-(--surface) hover:text-(--ink)">
               {t("spaces")}
             </Link>
-            <Link href="/dashboard" className="rounded-full px-3.5 py-2 text-sm font-medium text-(--muted) transition-colors hover:bg-white hover:text-(--ink)">
+            <Link href="/dashboard" className="rounded-full px-3.5 py-2 text-sm font-medium text-(--muted) transition-colors hover:bg-(--surface) hover:text-(--ink)">
               {t("dashboard")}
             </Link>
           </div>
