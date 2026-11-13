@@ -53,7 +53,11 @@ La aplicación está disponible en español (`/es`) e inglés (`/en`). El usuari
 
 Configura en `.env` las variables requeridas y ejecuta `docker compose up --build`. El contenedor espera una base PostgreSQL externa; aplica las migraciones a esa base antes de arrancar la app. Para desplegar el contenedor en producción se recomienda ejecutar `npx prisma migrate deploy` como paso de release separado.
 
-## Despliegue en Vercel y Supabase
+## CI/CD en AWS EC2
+
+GitHub Actions valida cada push y pull request. Tras configurar los secretos y la variable de activación, los pushes validados a `main` despliegan automáticamente a la EC2 pública, aplican las migraciones pendientes y comprueban la respuesta local de la app. Consulta [la guía de CI/CD para EC2](docs/CI-CD-EC2.md) para configurar el acceso de GitHub Actions.
+
+## Alternativa de despliegue: Vercel y Supabase
 
 1. Crea una base PostgreSQL en Supabase y configura `DATABASE_URL` en los ajustes del proyecto Vercel.
 2. En **Settings → Environment Variables**, configura `DATABASE_URL`, `JWT_ACCESS_SECRET` y `JWT_REFRESH_SECRET` para Production y Preview. Los dos secretos JWT deben ser aleatorios, distintos y de al menos 32 caracteres. `ACCESS_TOKEN_EXPIRES_IN`, `REFRESH_TOKEN_EXPIRES_IN` y `BUSINESS_TIMEZONE` son opcionales.

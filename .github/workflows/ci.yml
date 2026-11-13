@@ -1,8 +1,12 @@
-name: CI
+name: CI/CD
 
 on:
   push:
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   validate:
@@ -23,3 +27,54 @@ jobs:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/cospace?schema=public
           JWT_ACCESS_SECRET: ci-access-secret-at-least-32-characters-long
           JWT_REFRESH_SECRET: ci-refresh-secret-at-least-32-characters-long
+
+  deploy:
+    name: Deploy to public EC2
+    needs: validate
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+      vars.EC2_DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency:
+      group: cospace-production-deploy
+      cancel-in-progress: false
+    steps:
+      - name: Deploy app, migrate PostgreSQL, and check the site
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+          EC2_SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          EC2_KNOWN_HOSTS: ${{ secrets.EC2_KNOWN_HOSTS }}
+        run: |
+          set -Eeuo pipefail
+          : "${EC2_HOST:?Add the EC2_HOST repository secret}"
+          : "${EC2_USER:?Add the EC2_USER repository secret}"
+          : "${EC2_SSH_PRIVATE_KEY:?Add the EC2_SSH_PRIVATE_KEY repository secret}"
+          : "${EC2_KNOWN_HOSTS:?Add the EC2_KNOWN_HOSTS repository secret}"
+
+          ssh_dir="$RUNNER_TEMP/cospace-ssh"
+          install -m 700 -d "$ssh_dir"
+          printf '%s\n' "$EC2_SSH_PRIVATE_KEY" > "$ssh_dir/deploy_key"
+          printf '%s\n' "$EC2_KNOWN_HOSTS" > "$ssh_dir/known_hosts"
+          chmod 600 "$ssh_dir/deploy_key" "$ssh_dir/known_hosts"
+
+          ssh \
+            -i "$ssh_dir/deploy_key" \
+            -o IdentitiesOnly=yes \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$ssh_dir/known_hosts" \
+            "$EC2_USER@$EC2_HOST" 'bash -s' <<'REMOTE'
+          set -Eeuo pipefail
+          cd "$HOME/CoSpace"
+          git pull --ff-only origin main
+
+          # Build the app and a one-off Prisma migration image.
+          sudo docker compose --profile ops build app migrate
+          sudo docker compose --profile ops run --rm migrate
+          sudo docker compose up -d app
+          curl --fail --silent --show-error --max-time 20 http://127.0.0.1:3000/es >/dev/null
+          sudo docker compose ps
+          REMOTE

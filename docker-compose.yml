@@ -12,3 +12,13 @@ services:
       REFRESH_TOKEN_EXPIRES_IN: ${REFRESH_TOKEN_EXPIRES_IN:-7d}
       BUSINESS_TIMEZONE: ${BUSINESS_TIMEZONE:-America/Bogota}
     restart: unless-stopped
+
+  migrate:
+    profiles: ["ops"]
+    build:
+      context: .
+      target: builder
+    env_file:
+      - .env
+    entrypoint: ["npx"]
+    command: ["prisma", "migrate", "deploy"]
