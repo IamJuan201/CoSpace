@@ -1,6 +1,6 @@
 "use client";
 
-import type { FormEvent, ReactElement } from "react";
+import type { ChangeEvent, FormEvent, ReactElement } from "react";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { apiFetch } from "@/lib/api-fetch";
@@ -25,6 +25,7 @@ export default function AdminSpaces(): ReactElement {
   const [editing, setEditing] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   async function load(): Promise<void> {
     try { setSpaces(await apiFetch<SpaceItem[]>("/api/spaces?includeInactive=true")); }
@@ -52,6 +53,29 @@ export default function AdminSpaces(): ReactElement {
     finally { setBusy(false); }
   }
 
+  async function uploadImage(event: ChangeEvent<HTMLInputElement>): Promise<void> {
+    const input = event.currentTarget;
+    const file = input.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setError("");
+    const formData = new FormData();
+    formData.set("image", file);
+    try {
+      const result = await apiFetch<{ imageUrl: string }>("/api/spaces/upload-image", {
+        method: "POST",
+        body: formData,
+      });
+      setForm((current) => ({ ...current, imageUrl: result.imageUrl }));
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : t("error"));
+    } finally {
+      setUploading(false);
+      input.value = "";
+    }
+  }
+
   function edit(space: SpaceItem): void {
     setEditing(space.id);
     setForm({ name: space.name, description: space.description, type: space.type, pricePerHour: String(space.pricePerHour), imageUrl: space.imageUrl ?? "" });
@@ -76,8 +100,14 @@ export default function AdminSpaces(): ReactElement {
         <select aria-label={t("type")} value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value as typeof form.type })} className="rounded-xl border border-(--line) bg-(--background) px-3 py-3 text-(--ink)"><option value="DESK">{t("desk")}</option><option value="MEETING_ROOM">{t("meetingRoom")}</option><option value="CABIN">{t("cabin")}</option></select>
         <textarea aria-label={t("description")} placeholder={t("description")} required value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="rounded-xl border border-(--line) bg-(--background) px-3 py-3 text-(--ink) sm:col-span-2" />
         <input aria-label={t("price")} type="number" min="0.01" step="0.01" required value={form.pricePerHour} onChange={(e) => setForm({ ...form, pricePerHour: e.target.value })} className="rounded-xl border border-(--line) bg-(--background) px-3 py-3 text-(--ink)" />
-        <input aria-label={t("imageUrl")} type="url" placeholder={t("imageUrl")} value={form.imageUrl} onChange={(e) => setForm({ ...form, imageUrl: e.target.value })} className="rounded-xl border border-(--line) bg-(--background) px-3 py-3 text-(--ink)" />
-        <div className="flex gap-2 sm:col-span-2"><Button disabled={busy}>{editing ? t("update") : t("create")}</Button>{editing && <Button type="button" variant="secondary" onClick={() => { setEditing(null); setForm(emptyForm); }}>{t("cancelEdit")}</Button>}</div>
+        <input aria-label={t("imageUrl")} type="text" inputMode="url" placeholder={t("imageUrl")} value={form.imageUrl} onChange={(e) => setForm({ ...form, imageUrl: e.target.value })} className="rounded-xl border border-(--line) bg-(--background) px-3 py-3 text-(--ink)" />
+        <label className="flex flex-col gap-1 text-sm text-(--muted)">
+          <span>{t("uploadImage")}</span>
+          <input type="file" accept="image/jpeg,image/png,image/webp" disabled={busy || uploading} onChange={(event) => void uploadImage(event)} className="rounded-xl border border-(--line) bg-(--background) px-3 py-2 text-(--ink) file:mr-3 file:rounded-lg file:border-0 file:bg-(--accent-soft) file:px-3 file:py-2" />
+          {uploading && <span role="status">{t("uploadingImage")}</span>}
+          {!uploading && form.imageUrl.startsWith("s3://") && <span role="status">{t("imageUploaded")}</span>}
+        </label>
+        <div className="flex gap-2 sm:col-span-2"><Button disabled={busy || uploading}>{editing ? t("update") : t("create")}</Button>{editing && <Button type="button" variant="secondary" onClick={() => { setEditing(null); setForm(emptyForm); }}>{t("cancelEdit")}</Button>}</div>
       </form>
       <div className="grid gap-3">{spaces.map((space) => <article key={space.id} className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-(--line) bg-(--surface) p-4"><div><h2 className="font-semibold text-(--ink)">{space.name}</h2><p className="text-sm text-(--muted)">{space.type} · {space.pricePerHour} USD · {space.isActive ? t("active") : t("inactive")}</p></div><div className="flex gap-2"><Button variant="secondary" onClick={() => edit(space)}>{t("edit")}</Button><Button variant="secondary" onClick={() => void toggleActive(space)}>{space.isActive ? t("deactivate") : t("reactivate")}</Button></div></article>)}</div>
     </section>

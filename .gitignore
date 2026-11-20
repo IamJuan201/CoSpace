@@ -19,6 +19,7 @@
 
 # production
 /build
+/lambda/image-processor/*.zip
 
 # misc
 .DS_Store

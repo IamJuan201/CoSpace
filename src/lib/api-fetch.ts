@@ -14,7 +14,10 @@ export async function apiFetch<T>(input: string, init: RequestInit = {}): Promis
     fetch(input, {
       ...init,
       credentials: "same-origin",
-      headers: { "Content-Type": "application/json", ...init.headers },
+      headers: {
+        ...(init.body instanceof FormData ? {} : { "Content-Type": "application/json" }),
+        ...init.headers,
+      },
     });
 
   let response = await request();

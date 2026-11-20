@@ -30,6 +30,9 @@ export default async function SpaceDetailPage({
     currency: "USD",
     currencyDisplay: "narrowSymbol",
   });
+  const imageSrc = space.imageUrl?.startsWith("s3://")
+    ? `/api/spaces/${space.id}/image`
+    : space.imageUrl;
 
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-10">
@@ -39,7 +42,7 @@ export default async function SpaceDetailPage({
 
       <div className="mt-6 grid gap-8 lg:grid-cols-2">
         <SpaceImage
-          src={space.imageUrl}
+          src={imageSrc}
           alt={space.name}
           sizes="(min-width: 1024px) 50vw, 100vw"
           className="aspect-4/3 rounded-xl"

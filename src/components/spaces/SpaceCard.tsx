@@ -19,12 +19,15 @@ export default function SpaceCard({ space }: SpaceCardProps): ReactElement {
     currency: "USD",
     currencyDisplay: "narrowSymbol",
   });
+  const imageSrc = space.imageUrl?.startsWith("s3://")
+    ? `/api/spaces/${space.id}/image`
+    : space.imageUrl;
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-[22px] border border-(--line) bg-(--surface) shadow-[0_1px_3px_rgba(23,37,31,0.04)] transition-shadow hover:shadow-[0_14px_36px_rgba(23,37,31,0.11)]">
       <div className="relative">
         <SpaceImage
-          src={space.imageUrl}
+          src={imageSrc}
           alt={space.name}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="aspect-5/3 transition-transform duration-500 group-hover:scale-[1.02]"

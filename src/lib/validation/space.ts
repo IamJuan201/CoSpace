@@ -1,6 +1,15 @@
 import { z } from "zod";
 import { SpaceType } from "@prisma/client";
 
+const imageReferenceSchema = z.string().refine((value) => {
+  if (value.startsWith("s3://")) {
+    const bucket = process.env.S3_BUCKET;
+    return Boolean(bucket && value.startsWith(`s3://${bucket}/incoming/`));
+  }
+
+  return z.url().safeParse(value).success;
+}, "URL o referencia de imagen inválida");
+
 export const createSpaceSchema = z.object({
   name: z.string().trim().min(1, "El nombre es obligatorio"),
   description: z.string().trim().min(1, "La descripción es obligatoria"),
@@ -8,7 +17,7 @@ export const createSpaceSchema = z.object({
   pricePerHour: z
     .number({ message: "El precio debe ser un número" })
     .positive("El precio debe ser mayor a 0"),
-  imageUrl: z.url("URL de imagen inválida").nullish(),
+  imageUrl: imageReferenceSchema.nullish(),
 });
 
 export const updateSpaceSchema = createSpaceSchema
